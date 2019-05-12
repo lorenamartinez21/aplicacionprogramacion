@@ -11,30 +11,13 @@ import javax.swing.UIManager;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class olvidecontraseña extends JFrame {
 
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					olvidecontraseña frame = new olvidecontraseña();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public olvidecontraseña() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -46,7 +29,7 @@ public class olvidecontraseña extends JFrame {
 		JTextPane txtpnCorreoDeRecuperacin = new JTextPane();
 		txtpnCorreoDeRecuperacin.setEditable(false);
 		txtpnCorreoDeRecuperacin.setBackground(UIManager.getColor("Button.background"));
-		txtpnCorreoDeRecuperacin.setBounds(23, 50, 132, 20);
+		txtpnCorreoDeRecuperacin.setBounds(10, 50, 138, 20);
 		txtpnCorreoDeRecuperacin.setText("Correo de recuperaci\u00F3n");
 		contentPane.add(txtpnCorreoDeRecuperacin);
 		
@@ -55,10 +38,13 @@ public class olvidecontraseña extends JFrame {
 		contentPane.add(textPane);
 		
 		JButton btnEnviar = new JButton("Enviar");
-		btnEnviar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		btnEnviar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
 			}
 		});
+	
 		btnEnviar.setBounds(165, 105, 89, 23);
 		contentPane.add(btnEnviar);
 	}
