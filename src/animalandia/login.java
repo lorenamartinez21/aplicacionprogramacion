@@ -26,22 +26,18 @@ public class login extends JFrame {
 	private JPanel contentPane;
 	private JPasswordField contraseña;
 
-	/**
-	 * Launch the application.
-	 */
-
-	/**
-	 * Create the frame.
-	 */
 	public login() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(176, 224, 230));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(176, 224, 230));
+		panel.setForeground(Color.PINK);
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 
@@ -50,38 +46,42 @@ public class login extends JFrame {
 		panel.add(contraseña);
 
 		JTextPane usuario = new JTextPane();
+		usuario.setBackground(Color.WHITE);
+		usuario.setForeground(Color.BLACK);
 		usuario.setBounds(128, 52, 117, 20);
 		panel.add(usuario);
 
 		JTextPane txtpnUsuario = new JTextPane();
 		txtpnUsuario.setEditable(false);
-		txtpnUsuario.setBackground(UIManager.getColor("Button.background"));
+		txtpnUsuario.setBackground(new Color(176, 224, 230));
 		txtpnUsuario.setText("Usuario");
 		txtpnUsuario.setBounds(37, 52, 70, 20);
 		panel.add(txtpnUsuario);
 
 		JTextPane txtpnContrasea = new JTextPane();
 		txtpnContrasea.setEditable(false);
-		txtpnContrasea.setBackground(UIManager.getColor("Button.background"));
+		txtpnContrasea.setBackground(new Color(176, 224, 230));
 		txtpnContrasea.setText("Contrase\u00F1a");
 		txtpnContrasea.setBounds(37, 94, 70, 20);
 		panel.add(txtpnContrasea);
 
 		JTextPane txtpnIniciarSesin = new JTextPane();
-		txtpnIniciarSesin.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		txtpnIniciarSesin.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 20));
 		txtpnIniciarSesin.setText("INICIAR SESI\u00D3N");
 		txtpnIniciarSesin.setEditable(false);
-		txtpnIniciarSesin.setBackground(SystemColor.menu);
-		txtpnIniciarSesin.setBounds(148, 11, 224, 20);
+		txtpnIniciarSesin.setBackground(new Color(176, 224, 230));
+		txtpnIniciarSesin.setBounds(138, 11, 150, 30);
 		panel.add(txtpnIniciarSesin);
 
 		JButton Login = new JButton("LOGIN");
+		Login.setBackground(UIManager.getColor("Button.background"));
+		Login.setForeground(Color.MAGENTA);
 		Login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					boolean entra = usuarioaceptado.usuariocorrecto(usuario.getText(), contraseña.getText());
 					if (entra) {
-						principal a = new principal();
+						principal a = new principal(usuario.getText());
 						dispose();
 						a.setVisible(true);
 					} else {
@@ -101,6 +101,7 @@ public class login extends JFrame {
 		panel.add(Login);
 
 		JButton btnHeOlvidadoMi = new JButton("He olvidado mi contrase\u00F1a");
+		btnHeOlvidadoMi.setBackground(UIManager.getColor("Button.background"));
 		btnHeOlvidadoMi.setForeground(Color.BLUE);
 		btnHeOlvidadoMi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -114,6 +115,8 @@ public class login extends JFrame {
 		panel.add(btnHeOlvidadoMi);
 
 		JButton btnNuevoUsuario = new JButton("Nuevo usuario");
+		btnNuevoUsuario.setBackground(UIManager.getColor("Button.background"));
+		btnNuevoUsuario.setForeground(Color.MAGENTA);
 		btnNuevoUsuario.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

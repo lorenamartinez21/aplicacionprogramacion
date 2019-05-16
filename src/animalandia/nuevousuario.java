@@ -13,9 +13,13 @@ import javax.swing.UIManager;
 import java.awt.SystemColor;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
+import java.awt.Color;
 
 public class nuevousuario extends JFrame {
 
@@ -27,30 +31,30 @@ public class nuevousuario extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
-		contentPane.setBackground(UIManager.getColor("Button.background"));
+		contentPane.setBackground(new Color(176, 224, 230));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		JTextPane textPane = new JTextPane();
 		textPane.setText("REGISTRARSE");
-		textPane.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		textPane.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 20));
 		textPane.setEditable(false);
-		textPane.setBackground(SystemColor.menu);
+		textPane.setBackground(new Color(176, 224, 230));
 		textPane.setBounds(154, 11, 144, 32);
 		contentPane.add(textPane);
 
 		JTextPane textPane_1 = new JTextPane();
 		textPane_1.setText("Usuario");
 		textPane_1.setEditable(false);
-		textPane_1.setBackground(SystemColor.menu);
+		textPane_1.setBackground(new Color(176, 224, 230));
 		textPane_1.setBounds(70, 69, 70, 20);
 		contentPane.add(textPane_1);
 
 		JTextPane textPane_2 = new JTextPane();
 		textPane_2.setText("Contrase\u00F1a");
 		textPane_2.setEditable(false);
-		textPane_2.setBackground(SystemColor.menu);
+		textPane_2.setBackground(new Color(176, 224, 230));
 		textPane_2.setBounds(70, 100, 70, 20);
 		contentPane.add(textPane_2);
 
@@ -65,7 +69,7 @@ public class nuevousuario extends JFrame {
 		JTextPane txtpnCorreoElectrnico = new JTextPane();
 		txtpnCorreoElectrnico.setText("Correo electr\u00F3nico");
 		txtpnCorreoElectrnico.setEditable(false);
-		txtpnCorreoElectrnico.setBackground(SystemColor.menu);
+		txtpnCorreoElectrnico.setBackground(new Color(176, 224, 230));
 		txtpnCorreoElectrnico.setBounds(70, 134, 111, 20);
 		contentPane.add(txtpnCorreoElectrnico);
 
@@ -74,6 +78,8 @@ public class nuevousuario extends JFrame {
 		contentPane.add(email);
 
 		JButton btnNewButton = new JButton("Crear");
+		btnNewButton.setForeground(new Color(255, 0, 255));
+		btnNewButton.setBackground(UIManager.getColor("Button.background"));
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			
 			public void mouseClicked(MouseEvent e) {
@@ -102,10 +108,23 @@ public class nuevousuario extends JFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+				JOptionPane.showMessageDialog(null, "El usuario se ha creado correctamente ");
 			}
 		});
 		btnNewButton.setBounds(175, 183, 89, 23);
 		contentPane.add(btnNewButton);
 		
+		JButton btnVolver = new JButton("Volver");
+		btnVolver.setForeground(Color.BLUE);
+		btnVolver.setBackground(UIManager.getColor("Button.background"));
+		btnVolver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				login o = new login();
+				dispose();
+				o.setVisible(true);
+			}
+		});
+		btnVolver.setBounds(10, 11, 89, 23);
+		contentPane.add(btnVolver);
 	}
 }

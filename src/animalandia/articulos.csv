@@ -1,0 +1,16 @@
+tipo; id; nombre; cantidad; precio
+comida;2;comida para gatos;23;4
+comida;3;comida de peces;10;2
+comida;4;comida de hamster;15;3
+juguetes y premios;5;pelota de perro;6;3
+juguetes y premios;6;parquecito de gato;4;20
+juguetes y premios;7;parquecito de ardilla;3;50
+juguetes y premios;9;chuches de perro;7;2
+animales;10;ardilla;3;60
+animales;11;conejo;5;15
+animales;12;pez;10;3
+animales;13;hamster;10;5
+animales;14;serpiente;3;50
+comida;15;comida de ardilla;20;6
+animales;16;pollo;10;5
+juguetes y premios;17;galletas;20;3

@@ -2,9 +2,12 @@ package animalandia;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -14,6 +17,10 @@ import javax.swing.table.DefaultTableModel;
 import com.mysql.jdbc.PreparedStatement;
 
 import javax.swing.JTable;
+import java.awt.Color;
+import javax.swing.UIManager;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 public class animales extends JFrame {
 
@@ -23,7 +30,7 @@ public class animales extends JFrame {
 
 	
 	
-	public animales()  throws SQLException {
+	public animales(String usuario)  throws SQLException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -32,20 +39,19 @@ public class animales extends JFrame {
 		setContentPane(contentPane);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(176, 224, 230));
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
-		table = new JTable();
 		
 		
-		
-		table.setBounds(10, 24, 425, 256);
-		panel.add(table);
 		
 		Object[][] datos = new Object[0][0];
 		String[] titulo = {"nombre", "cantidad", "precio"};
 		DefaultTableModel animales = new DefaultTableModel(datos,titulo);
-		table.setModel(animales);
-		JTable tabla =new JTable(animales);
+	
+		
+		
+		
 		
 		String consulta = "Select nombre, cantidad, precio from artículos where tipo=?";
 		PreparedStatement sentencia = (PreparedStatement) conexion.conexionBBDD().prepareStatement (consulta);
@@ -60,36 +66,46 @@ public class animales extends JFrame {
 		
 			
 			animales.addRow(animal);
-			panel.add(table);
+			//panel.add(table);
 			
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		panel.add(table);
 		
-		JLabel lblNombre = new JLabel("Nombre");
-		lblNombre.setBounds(61, 11, 46, 14);
-		panel.add(lblNombre);
+	    table = new JTable();
+	    panel.add(table);
+	    table.setEnabled(false);
+	    table.setBackground(new Color(255, 228, 196));
+	    
+
+	    table.setBounds(0, 56, 100, 144);
+	    table.setModel(animales);
 		
-		JLabel lblCantidad = new JLabel("Cantidad");
-		lblCantidad.setBounds(195, 11, 70, 14);
-		panel.add(lblCantidad);
+		JButton btnVolver = new JButton("Volver");
+		btnVolver.setForeground(new Color(0, 0, 255));
+		btnVolver.setBackground(UIManager.getColor("Button.background"));
+		btnVolver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				principal o = new principal(usuario);
+				dispose();
+				o.setVisible(true);
+			}
+		});
+		btnVolver.setBounds(10, 11, 89, 23);
+		panel.add(btnVolver);
 		
-		JLabel lblPrecio = new JLabel("precio");
-		lblPrecio.setBounds(338, 11, 46, 14);
-		panel.add(lblPrecio);
+		 //add(scrollPane);
+		 JScrollPane scrollPane = new JScrollPane(table);
+		 scrollPane.setBounds(0, 65, 424, 83);
+		 panel.add(scrollPane);
+		 scrollPane.setEnabled(false);
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setVisible(true);
+	
 		
-		table = new JTable();
-		table.setBounds(10, 27, 430, 232);
-		panel.add(table);
-		
-		
-		
+		//panel.add(table);
 	}
-	private static void addColumn(String string) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 }
