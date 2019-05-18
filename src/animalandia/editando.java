@@ -15,6 +15,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import javax.swing.DefaultComboBoxModel;
 
 public class editando extends JFrame {
 
@@ -55,6 +56,7 @@ public class editando extends JFrame {
 		panel.add(label_4);
 
 		JComboBox tipo = new JComboBox();
+		tipo.setModel(new DefaultComboBoxModel(new String[] {"comida", "juguetes y premios", "animales"}));
 		tipo.setForeground(new Color(255, 0, 255));
 		tipo.addItem("comida");
 		tipo.addItem("juguetes y premios");
@@ -104,7 +106,7 @@ public class editando extends JFrame {
 					conexion.EjecutarUpdate("UPDATE `artículos` SET `tipo`='" + Tipo + "',`nombre`='" + nombre.getText()
 							+ "',`cantidad`='" + cantidad.getText() + "',`precio`='" + precio.getText()
 							+ "' WHERE `nombre`='" + Articulo + "'");
-					System.out.println(Articulo);
+					
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

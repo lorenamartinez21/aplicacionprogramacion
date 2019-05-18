@@ -18,6 +18,7 @@ import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.UIManager;
+import javax.swing.ImageIcon;
 
 public class principal extends JFrame {
 
@@ -116,9 +117,7 @@ public class principal extends JFrame {
 		btnVolver.setBounds(10, 11, 89, 23);
 		articulos.add(btnVolver);
 		
-		JLabel label = new JLabel("");
-		label.setBounds(142, 59, 258, 181);
-		articulos.add(label);
+		
 		
 		if (usuario.equals("lorena")) {
 		
@@ -218,5 +217,12 @@ public class principal extends JFrame {
 			btnBorrarArtculo.setBounds(268, 155, 132, 23);
 			articulos.add(btnBorrarArtculo);
 		}
+		if (!usuario.equals("lorena")) {
+			JLabel label = new JLabel("");
+			label.setIcon(new ImageIcon(principal.class.getResource("/imagen/puppy.jpg")));
+			label.setBounds(182, 74, 189, 119);
+			articulos.add(label);
+		}
+		}
 	}
-}
+
