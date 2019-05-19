@@ -33,18 +33,30 @@ public class editarArticulo extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
+		//aqui ponemos un texto NO editable llamado "Articulos"
+		
 		JLabel lblEditar = new JLabel("Art\u00EDculos:");
 		lblEditar.setBounds(38, 93, 76, 14);
 		panel.add(lblEditar);
 		
+		//ahora creamos un boton desplegable con todos los articulos
+		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setForeground(new Color(255, 0, 255));
 		comboBox.setBounds(124, 90, 161, 20);
+		
+		/*en este string de la clase editar tenemos todos 
+		los articulos de la base de datos*/
+		
 		String[] articulos=editar.editar();
 		for (int i = 0; i < articulos.length; i++) {
 			comboBox.addItem(articulos[i]);
 		}
 		panel.add(comboBox);
+		
+		/*creamos el boton de editar, el cual nos lleva a la clase 
+		editando, donde esta el codigo que ejecutara la accion de 
+		editar el articulo seleccionado*/
 		
 		JButton btnEditar = new JButton("Editar");
 		btnEditar.setForeground(new Color(255, 0, 255));
@@ -56,6 +68,8 @@ public class editarArticulo extends JFrame {
 				o.setVisible(true);
 			}
 		});
+		
+		//aqui añadimos nuestro boton de volver a la anterior
 		
 		JButton btnVolver = new JButton("Volver");
 		btnVolver.setForeground(new Color(0, 0, 255));

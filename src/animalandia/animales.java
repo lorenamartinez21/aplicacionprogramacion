@@ -44,14 +44,14 @@ public class animales extends JFrame {
 		panel.setLayout(null);
 		
 		
+		/*creamos una tabla donde nos apareceran los datos que queramos de 
+		la base de datos, en este caso, de los animales*/
 		
 		Object[][] datos = new Object[0][0];
 		String[] titulo = {"nombre", "cantidad", "precio"};
 		DefaultTableModel animales = new DefaultTableModel(datos,titulo);
 	
-		
-		
-		
+		//aqui ponemos su respectiva sentencia
 		
 		String consulta = "Select nombre, cantidad, precio from artículos where tipo=?";
 		PreparedStatement sentencia = (PreparedStatement) conexion.conexionBBDD().prepareStatement (consulta);
@@ -64,7 +64,7 @@ public class animales extends JFrame {
 				animal[i] = rs.getString(i+1);
 			}
 		
-			
+			//asi añadimos las columnas
 			animales.addRow(animal);
 			//panel.add(table);
 			
@@ -73,6 +73,8 @@ public class animales extends JFrame {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		//aqui terminamos de darle formato a la tabla
 		
 	    table = new JTable();
 	    panel.add(table);
@@ -83,6 +85,8 @@ public class animales extends JFrame {
 	    table.setBounds(0, 56, 100, 144);
 	    table.setModel(animales);
 		
+	    //aqui colocamos el boton volver, como en cada ventana
+	    
 		JButton btnVolver = new JButton("Volver");
 		btnVolver.setForeground(new Color(0, 0, 255));
 		btnVolver.setBackground(UIManager.getColor("Button.background"));
@@ -96,7 +100,8 @@ public class animales extends JFrame {
 		btnVolver.setBounds(10, 11, 89, 23);
 		panel.add(btnVolver);
 		
-		 //add(scrollPane);
+		//aqui estamos colocando un scroll para la tabla
+		
 		 JScrollPane scrollPane = new JScrollPane(table);
 		 scrollPane.setBounds(0, 65, 424, 83);
 		 panel.add(scrollPane);
@@ -105,7 +110,7 @@ public class animales extends JFrame {
 		scrollPane.setVisible(true);
 	
 		
-		//panel.add(table);
+	
 	}
 	
 }

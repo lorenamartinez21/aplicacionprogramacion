@@ -3,6 +3,7 @@ package animalandia;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+//hacemos lo mismo que con la clase "editar"
 public class eliminar {
 	public static String[] eliminar() throws SQLException {
 		ResultSet usuarios;
@@ -19,6 +20,7 @@ public class eliminar {
 			i++;
 		}
 		return usuario;
+		//mas tarde usaremos el string eliminar para la clase "borrarArticulo"
 	}
 }
 

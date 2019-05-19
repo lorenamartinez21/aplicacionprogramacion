@@ -38,7 +38,9 @@ public class editando extends JFrame {
 		panel.setBackground(new Color(255, 228, 196));
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
-
+		
+		//creamos los textos NO editables correspondientes
+		
 		JLabel label_1 = new JLabel("Nombre");
 		label_1.setBounds(20, 45, 46, 14);
 		panel.add(label_1);
@@ -54,7 +56,9 @@ public class editando extends JFrame {
 		JLabel label_4 = new JLabel("Tipo");
 		label_4.setBounds(317, 45, 46, 14);
 		panel.add(label_4);
-
+		
+		//creamos un boton desplegable con los tres tipos de articulos a elegir
+		
 		JComboBox tipo = new JComboBox();
 		tipo.setModel(new DefaultComboBoxModel(new String[] {"comida", "juguetes y premios", "animales"}));
 		tipo.setForeground(new Color(255, 0, 255));
@@ -63,7 +67,9 @@ public class editando extends JFrame {
 		tipo.addItem("animales");
 		tipo.setBounds(311, 68, 113, 20);
 		panel.add(tipo);
-
+		
+		//creamos los textos correspondientes
+		
 		precio = new JTextField();
 		precio.setColumns(10);
 		precio.setBounds(208, 68, 86, 20);
@@ -78,6 +84,9 @@ public class editando extends JFrame {
 		nombre.setColumns(10);
 		nombre.setBounds(20, 68, 86, 20);
 		panel.add(nombre);
+		
+		//añadimos nuestro boton de volver
+		
 		JButton btnVolver = new JButton("Volver");
 		btnVolver.setForeground(new Color(0, 0, 255));
 		btnVolver.addActionListener(new ActionListener() {
@@ -96,13 +105,18 @@ public class editando extends JFrame {
 		});
 		btnVolver.setBounds(10, 11, 89, 23);
 		panel.add(btnVolver);
-
+		
+		/*aqui creamos el boton de editar, que al pulsarlo nos modificara el 
+		articulo que hayamos elegido de la base de datos*/
+		
 		JButton button = new JButton("Editar");
 		button.setForeground(new Color(255, 0, 255));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String Tipo = (String) tipo.getSelectedItem();
 				try {
+					//aqui ponemos la sentencia para modificarlo
+					
 					conexion.EjecutarUpdate("UPDATE `artículos` SET `tipo`='" + Tipo + "',`nombre`='" + nombre.getText()
 							+ "',`cantidad`='" + cantidad.getText() + "',`precio`='" + precio.getText()
 							+ "' WHERE `nombre`='" + Articulo + "'");

@@ -37,7 +37,10 @@ public class añadirArticulo extends JFrame {
 		panel.setBackground(new Color(255, 228, 196));
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
-
+		
+		/*creamos un boton desplegable para elegir el 
+		tipo del articulo que vamos a crear*/
+		
 		JComboBox tipo = new JComboBox();
 		tipo.setForeground(new Color(255, 0, 255));
 		tipo.addItem("comida");
@@ -45,7 +48,9 @@ public class añadirArticulo extends JFrame {
 		tipo.addItem("animales");
 		tipo.setBounds(301, 69, 123, 20);
 		panel.add(tipo);
-
+		
+		//creamos los textos NO modificables correspondientes
+		
 		JLabel lblNombre = new JLabel("Nombre");
 		lblNombre.setBounds(20, 44, 46, 14);
 		panel.add(lblNombre);
@@ -61,7 +66,9 @@ public class añadirArticulo extends JFrame {
 		JLabel lblTipo = new JLabel("Tipo");
 		lblTipo.setBounds(303, 44, 46, 14);
 		panel.add(lblTipo);
-
+		
+		//creamos los paneles de texto para rellenar los datos correspondientes
+		
 		nombre = new JTextField();
 		nombre.setBounds(13, 69, 86, 20);
 		panel.add(nombre);
@@ -77,6 +84,8 @@ public class añadirArticulo extends JFrame {
 		panel.add(precio);
 		precio.setColumns(10);
 		
+		//añadimos nuestro boton de volver
+		
 		JButton btnVolver = new JButton("Volver");
 		btnVolver.setForeground(new Color(0, 0, 255));
 		btnVolver.addActionListener(new ActionListener() {
@@ -88,11 +97,17 @@ public class añadirArticulo extends JFrame {
 		});
 		btnVolver.setBounds(10, 11, 89, 23);
 		panel.add(btnVolver);
+		
+		//creamos el boton de añadir
+		
 		JButton btnAadir = new JButton("A\u00F1adir");
 		btnAadir.setForeground(new Color(255, 0, 255));
 		btnAadir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String Tipo = (String) tipo.getSelectedItem();
+				
+				//y con esta sentencia completamos la accion para añadir el articulo
+				
 				try {
 					conexion.EjecutarUpdate(
 							"INSERT INTO `artículos`(`tipo`, `id`, `nombre`, `cantidad`, `precio`) VALUES ('" + Tipo

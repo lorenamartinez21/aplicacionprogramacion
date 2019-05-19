@@ -34,6 +34,8 @@ public class olvidecontraseña extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		//ponemos el texto "correo de recuperacion"
+		
 		JTextPane txtpnCorreoDeRecuperacin = new JTextPane();
 		txtpnCorreoDeRecuperacin.setEditable(false);
 		txtpnCorreoDeRecuperacin.setBackground(new Color(176, 224, 230));
@@ -41,42 +43,44 @@ public class olvidecontraseña extends JFrame {
 		txtpnCorreoDeRecuperacin.setText("Correo de recuperaci\u00F3n");
 		contentPane.add(txtpnCorreoDeRecuperacin);
 		
+		//aqui escribiriamos ese correo
+		
 		JTextPane email = new JTextPane();
 		email.setBounds(172, 116, 154, 20);
 		contentPane.add(email);
+		
+		//creamos el boton de enviar
 		
 		JButton btnEnviar = new JButton("Enviar");
 		btnEnviar.setForeground(new Color(255, 0, 255));
 		btnEnviar.setBackground(UIManager.getColor("Button.background"));
 		btnEnviar.addActionListener(new ActionListener() {
+			
+			/*aqui haremos que nos genere una nueva contraseña, dandole el string
+			 de la clase nuevaContraseña, donde se almacenan todos las correos 
+			 de la base de datos. Si el correo existe, generara la contraseña
+			 */
+			
 			public void actionPerformed(ActionEvent e) {
 			try {
 				String contraseñaNueva=nuevaContraseña.nuevaContraseña(email.getText());
 				JOptionPane.showMessageDialog(null, "su nueva contraseña es: "+ contraseñaNueva);
+				
+				//y con esto, esa contraseña generada se actualizara en la base de datos
+				
 				conexion.EjecutarUpdate("UPDATE usuarios SET contraseña='"+contraseñaNueva+"' WHERE email='"+email.getText()+"'" ); 
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			
-			
-			}
-		});
-		btnEnviar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-				try {
-					nuevaContraseña.nuevaContraseña(email.getText());
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
 			}
 		});
 	
 		btnEnviar.setBounds(206, 147, 89, 23);
 		contentPane.add(btnEnviar);
+		
+		//añadimos al panel nuestro boton de volver a la ventana anterior
 		
 		JButton btnVolver = new JButton("Volver");
 		btnVolver.setBackground(UIManager.getColor("Button.background"));
@@ -90,6 +94,8 @@ public class olvidecontraseña extends JFrame {
 		});
 		btnVolver.setBounds(10, 11, 89, 23);
 		contentPane.add(btnVolver);
+		
+		//asi añadimos el texto "CREAR NUEVA CONTRASEÑA" al panel
 		
 		JLabel lblCrearNuevaContrasea = new JLabel("CREAR NUEVA CONTRASE\u00D1A");
 		lblCrearNuevaContrasea.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 17));

@@ -33,9 +33,13 @@ public class borrarArticulo extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		//creamos el texto NO editable "Articulos"
+		
 		JLabel label = new JLabel("Art\u00EDculos:");
 		label.setBounds(56, 98, 64, 14);
 		contentPane.add(label);
+		
+		//aqui añadimos nuestro boton de volver a la anterior
 		
 		JButton btnVolver = new JButton("Volver");
 		btnVolver.setBounds(10, 11, 89, 23);
@@ -49,15 +53,26 @@ public class borrarArticulo extends JFrame {
 		});
 		contentPane.add(btnVolver);
 		
+		//aqui creamos un boton desplegable que va a contener todos nuestros articulos
+		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(130, 95, 136, 20);
 		comboBox.setForeground(new Color(255, 0, 255));
+		
+		/*aqui usamos el string de la clase eliminar, el cual contiene
+		los nombres de todos los articulos*/
+		
 		String[] articulos=eliminar.eliminar();
 		for (int i = 0; i < articulos.length; i++) {
 			comboBox.addItem(articulos[i]);
 		
 		}
 		contentPane.add(comboBox);
+		
+		/*aqui creamos un boton para cuando seleccionemos el articulo en el 
+		desplegable anterior, al darle a este, se elimine de la base de datos 
+		y de su respectiva tabla*/
+		
 		JButton btnEliminar = new JButton("Eliminar");
 		btnEliminar.setBounds(276, 94, 89, 23);
 		btnEliminar.setForeground(new Color(255, 0, 255));
@@ -67,6 +82,9 @@ public class borrarArticulo extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				String Articulo = (String) comboBox.getSelectedItem();
 				try {
+					
+					//aqui ponemos su respectiva sentencia
+					
 					conexion.EjecutarUpdate(
 							"DELETE * FROM `artículos` WHERE nombre='"+Articulo+"'");
 					JOptionPane.showMessageDialog(null, "Se ha borrado "+ Articulo);

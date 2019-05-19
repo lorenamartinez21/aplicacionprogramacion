@@ -24,6 +24,8 @@ public class principal extends JFrame {
 
 	private JPanel articulos;
 
+	//aqui iniciamos el panel y lo decoramos
+	
 	public principal(String usuario) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -34,17 +36,30 @@ public class principal extends JFrame {
 		setContentPane(articulos);
 		articulos.setLayout(null);
 
+		//aqui ponemos el texto "ANIMALANDIA", que sera el nombre de la tienda, y lo decoramos
+		
 		JLabel lblAnimalandia = new JLabel("ANIMALANDIA");
 		lblAnimalandia.setForeground(new Color(0, 0, 0));
 		lblAnimalandia.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 20));
 		lblAnimalandia.setBounds(156, 21, 156, 27);
+		
+		//lo añadimos al panel
+		
 		articulos.add(lblAnimalandia);
 
+		//creamos un boton con el texto "comida" y lo decoramos
+		
 		JButton btnComida = new JButton("comida");
 		btnComida.setForeground(new Color(255, 0, 255));
 		btnComida.setBackground(UIManager.getColor("Button.background"));
+		
+		//le decimos la accion que queremos que haga
+		
 		btnComida.addMouseListener(new MouseAdapter() {
 			@Override
+			
+			//aqui llamamos a la siguiente ventana "comida"
+			
 			public void mouseClicked(MouseEvent arg0) {
 				dispose();
 				comida c;
@@ -59,12 +74,20 @@ public class principal extends JFrame {
 			}
 		});
 		btnComida.setBounds(41, 86, 89, 23);
+		
+		//aqui añadimos el boton comida al panel
+		
 		articulos.add(btnComida);
-
+		
+		//aqui añadimos el boton "juguetes"
+		
 		JButton btnJuguetes = new JButton("juguetes");
 		btnJuguetes.setForeground(new Color(255, 0, 255));
 		btnJuguetes.setBackground(UIManager.getColor("Button.background"));
 		btnJuguetes.addActionListener(new ActionListener() {
+			
+			//y le decimos que nos lleve a la ventana "juguetes"
+			
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
 				juguetes c;
@@ -80,13 +103,20 @@ public class principal extends JFrame {
 
 		});
 		btnJuguetes.setBounds(41, 121, 89, 23);
+		
+		//aqui lo añadimos al panel
+		
 		articulos.add(btnJuguetes);
-
+		
+		//creamos el boton "animales"
+		
 		JButton btnAnimales = new JButton("animales");
 		btnAnimales.setForeground(new Color(255, 0, 255));
 		btnAnimales.setBackground(UIManager.getColor("Button.background"));
 		btnAnimales.addMouseListener(new MouseAdapter() {
-			@Override
+			
+			//le decimos que nos lleve a la ventana "animales"
+			
 			public void mouseClicked(MouseEvent arg0) {
 				dispose();
 				animales c;
@@ -102,12 +132,20 @@ public class principal extends JFrame {
 
 		});
 		btnAnimales.setBounds(41, 155, 89, 23);
+		
+		//lo añadimos al panel
+		
 		articulos.add(btnAnimales);
+		
+		//creamos el boton "volver"
 		
 		JButton btnVolver = new JButton("Volver");
 		btnVolver.setBackground(UIManager.getColor("Button.background"));
 		btnVolver.setForeground(new Color(0, 0, 255));
 		btnVolver.addActionListener(new ActionListener() {
+			
+			//este boton estara en todos los jframes y nos llevara siempre a la ventana anterior
+			
 			public void actionPerformed(ActionEvent arg0) {
 				login o = new login();
 				dispose();
@@ -115,21 +153,39 @@ public class principal extends JFrame {
 			}
 		});
 		btnVolver.setBounds(10, 11, 89, 23);
+		
+		//lo añadimos al panel
+		
 		articulos.add(btnVolver);
 		
-		
+		/*aqui le indicamos que SOLO el usuario "lorena" pueda ver los 
+		 botones que estan dentro de este if, por tanto sera el unico 
+		 que podra ejecutar esas funciones*/
 		
 		if (usuario.equals("lorena")) {
 		
+			/*creamos el boton "informe de usuarios", el cual, al hacer click en el, 
+			se nos actualizara toda la informacion de los usuarios, que podremos ver 
+			en el fichero "usuarios.csv"*/
+			
 		JButton btnInformeDeUsuarios = new JButton("Informe de usuarios");
 		btnInformeDeUsuarios.setForeground(Color.MAGENTA);
 		btnInformeDeUsuarios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
+				//aqui le indicamos la tabla de la que queremos sacar informacion de la base de datos
+				
 				ResultSet rs=conexion.ejecutarSentencia("Select * from usuarios");
 				try {
+					//aqui le indicamos la ruta del fichero donde queremos guardar los datos
+					
 					String ruta= "src/animalandia/usuarios.csv";
 					FileWriter fichero1=new FileWriter(ruta);
+					
+					//la info que queremos ver
+					
 					fichero1.write("usuario; contraseña; email\n");
+					
 					while(rs.next()) {
 						fichero1.write(rs.getString("usuario")+";"+rs.getString("contraseña")+";"+rs.getString("email")+"\n");
 					}
@@ -140,7 +196,15 @@ public class principal extends JFrame {
 			}
 		});
 		btnInformeDeUsuarios.setBounds(227, 215, 175, 23);
+		
+		//añadimos el boton al panel
+		
 		articulos.add(btnInformeDeUsuarios);
+		
+		/* ahora hacemos lo mismo que hemos hecho con los usuarios, 
+		pero con la tabla de los articulos, para tener asi la informacion 
+		de las dos tablas actualizadas en ficheros con solo darle a un boton 
+		si hacemos cualquien modificacion, o añadimos, o borramos*/
 		
 		JButton btnInformeDeArtculos = new JButton("Informe de art\u00EDculos");
 		btnInformeDeArtculos.setForeground(Color.MAGENTA);
@@ -165,22 +229,32 @@ public class principal extends JFrame {
 		articulos.add(btnInformeDeArtculos);
 
 		
-
+		// creamos el boton "añadir articulo"
+		
 			JButton btnAadirArtculo = new JButton("A\u00F1adir art\u00EDculo");
 			btnAadirArtculo.setForeground(new Color(255, 0, 255));
 			btnAadirArtculo.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
+					
+					//con esta accion hacemos que nos lleve a la ventana "añadirArticulo"
 					añadirArticulo o = new añadirArticulo(usuario);
 					dispose();
 					o.setVisible(true);
 				}
 			});
 			btnAadirArtculo.setBounds(268, 86, 134, 23);
+			
+			//lo añadimos al panel
+			
 			articulos.add(btnAadirArtculo);
-
+			
+			//creamos el boton "editar articulo"
+			
 			JButton btnEditarArtculo = new JButton("Editar art\u00EDculo");
 			btnEditarArtculo.setForeground(new Color(255, 0, 255));
 			btnEditarArtculo.addActionListener(new ActionListener() {
+				
+				//con esta accion hacemos que nos lleve a la ventana "editarArticulo"
 				public void actionPerformed(ActionEvent e) {
 					
 					editarArticulo o;
@@ -196,8 +270,12 @@ public class principal extends JFrame {
 				}
 			});
 			btnEditarArtculo.setBounds(268, 120, 134, 23);
+			
+			//y lo añadimos al panel
+			
 			articulos.add(btnEditarArtculo);
 
+			// y por ultimo, hacemos lo msmo con el boton de "borrar articulo"
 			JButton btnBorrarArtculo = new JButton("Borrar art\u00EDculo");
 			btnBorrarArtculo.setForeground(new Color(255, 0, 255));
 			btnBorrarArtculo.addActionListener(new ActionListener() {
@@ -217,6 +295,10 @@ public class principal extends JFrame {
 			btnBorrarArtculo.setBounds(268, 155, 132, 23);
 			articulos.add(btnBorrarArtculo);
 		}
+		
+		/*aqui añadimos una imagen que , por el contrario que antes, 
+		la veran todos los usuarios excepto lorena(root)*/
+		
 		if (!usuario.equals("lorena")) {
 			JLabel label = new JLabel("");
 			label.setIcon(new ImageIcon(principal.class.getResource("/imagen/puppy.jpg")));

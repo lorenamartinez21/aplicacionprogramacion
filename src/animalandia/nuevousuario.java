@@ -35,7 +35,9 @@ public class nuevousuario extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
+		
+		//creamos textos NO modificables
+		
 		JTextPane textPane = new JTextPane();
 		textPane.setText("REGISTRARSE");
 		textPane.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 20));
@@ -57,7 +59,17 @@ public class nuevousuario extends JFrame {
 		textPane_2.setBackground(new Color(176, 224, 230));
 		textPane_2.setBounds(70, 100, 70, 20);
 		contentPane.add(textPane_2);
-
+		
+		JTextPane txtpnCorreoElectrnico = new JTextPane();
+		txtpnCorreoElectrnico.setText("Correo electr\u00F3nico");
+		txtpnCorreoElectrnico.setEditable(false);
+		txtpnCorreoElectrnico.setBackground(new Color(176, 224, 230));
+		txtpnCorreoElectrnico.setBounds(70, 134, 111, 20);
+		contentPane.add(txtpnCorreoElectrnico);
+		
+		/*creamos los espacios de texto para rellenar el usuario, 
+		la contraseña y el email*/
+		
 		JTextPane users = new JTextPane();
 		users.setBounds(150, 69, 117, 20);
 		contentPane.add(users);
@@ -66,21 +78,20 @@ public class nuevousuario extends JFrame {
 		contraseña.setBounds(150, 100, 117, 20);
 		contentPane.add(contraseña);
 
-		JTextPane txtpnCorreoElectrnico = new JTextPane();
-		txtpnCorreoElectrnico.setText("Correo electr\u00F3nico");
-		txtpnCorreoElectrnico.setEditable(false);
-		txtpnCorreoElectrnico.setBackground(new Color(176, 224, 230));
-		txtpnCorreoElectrnico.setBounds(70, 134, 111, 20);
-		contentPane.add(txtpnCorreoElectrnico);
-
 		JTextPane email = new JTextPane();
 		email.setBounds(191, 134, 153, 20);
 		contentPane.add(email);
-
+		
+		//añadimos el boton de crear
+		
 		JButton btnNewButton = new JButton("Crear");
 		btnNewButton.setForeground(new Color(255, 0, 255));
 		btnNewButton.setBackground(UIManager.getColor("Button.background"));
 		btnNewButton.addMouseListener(new MouseAdapter() {
+			
+			/*al darle al boton, se comprobara si el usuario, la contraseña 
+			o el correo (en ese orden) ya estan registrados, en este caso 
+			dara error, si no esta registrado lo creara correctamente*/
 			
 			public void mouseClicked(MouseEvent e) {
 				try {
@@ -97,6 +108,9 @@ public class nuevousuario extends JFrame {
 								if(email.getText().equals("") || email.getText().equals(correos[i])) {
 									JOptionPane.showMessageDialog(null, "error", "email ya en uso o vacío", JOptionPane.ERROR_MESSAGE);
 									}else {
+										
+										//asi se añade el suaurio con todos sus datos
+										
 								conexion.EjecutarUpdate("INSERT INTO `usuarios`(`usuario`, `contraseña`, `email`) VALUES ('"+users.getText()+"','"+contraseña.getText()+"','"+email.getText()+"')");
 							}
 					}
@@ -113,6 +127,8 @@ public class nuevousuario extends JFrame {
 		});
 		btnNewButton.setBounds(175, 183, 89, 23);
 		contentPane.add(btnNewButton);
+		
+		//creamos el boton de volver a la ventana anterior
 		
 		JButton btnVolver = new JButton("Volver");
 		btnVolver.setForeground(Color.BLUE);

@@ -45,11 +45,14 @@ public class comida extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
+		//le damos formato a la tabla
 		table = new JTable();
 		table.setEnabled(false);
 		table.setBackground(new Color(255, 228, 196));
 		table.setBounds(0, 51, 435, 62);
 		panel.add(table);
+		
+		//añadimos la informacion de la base de datos igual que en la tabla animales
 		
 		Object[][] datos = new Object[0][0];
 		String[] titulo = {"nombre", "cantidad", "precio"};
@@ -79,6 +82,8 @@ public class comida extends JFrame {
 		}
 		panel.add(table);
 		
+		//añadimos el boton de volver a la anterior
+		
 		JButton btnVolver = new JButton("Volver");
 		btnVolver.setForeground(new Color(0, 0, 255));
 		btnVolver.addActionListener(new ActionListener() {
@@ -90,6 +95,8 @@ public class comida extends JFrame {
 		});
 		btnVolver.setBounds(10, 11, 89, 23);
 		panel.add(btnVolver);
+		
+		//añadimos su correspondiente scroll
 		
 		JScrollPane scrollPane = new JScrollPane(table);
 		 scrollPane.setBounds(0, 74, 424, 81);

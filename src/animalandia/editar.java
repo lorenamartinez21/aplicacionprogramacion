@@ -3,6 +3,8 @@ package animalandia;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+//aqui hacemos una seleccion del nombre de todos los articulos, como en "contraseñas"
+
 public class editar {
 	public static String[] editar() throws SQLException {
 		ResultSet usuarios;
@@ -19,5 +21,6 @@ public class editar {
 			i++;
 		}
 		return usuario;
+		//mas tarde usaremos el string editar para la clase "editarArticulo"
 	}
 }

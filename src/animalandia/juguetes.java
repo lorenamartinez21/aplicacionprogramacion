@@ -39,11 +39,16 @@ public class juguetes extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
+		//le damos formato a la tabla
+		
 		table = new JTable();
 		table.setEnabled(false);
 		table.setBackground(new Color(255, 228, 196));
 		table.setBounds(0, 50, 435, 64);
 		panel.add(table);
+		
+		/*ponemos sus titulos y le damos los datos de la base de datos, 
+		como en las otras dos tablas*/
 		
 		Object[][] datos = new Object[0][0];
 		String[] titulo = {"nombre", "cantidad", "precio"};
@@ -73,6 +78,8 @@ public class juguetes extends JFrame {
 		}
 		panel.add(table);
 		
+		//añadimos el boton de volver a la anterior ventana
+		
 		JButton btnVolver = new JButton("Volver");
 		btnVolver.setForeground(new Color(0, 0, 255));
 		btnVolver.addActionListener(new ActionListener() {
@@ -84,6 +91,8 @@ public class juguetes extends JFrame {
 		});
 		btnVolver.setBounds(10, 11, 106, 23);
 		panel.add(btnVolver);
+		
+		//añadimos a la tabla el scroll
 		
 		JScrollPane scrollPane = new JScrollPane(table);
 		 scrollPane.setBounds(0, 65, 424, 86);

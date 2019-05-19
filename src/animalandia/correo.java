@@ -3,6 +3,8 @@ package animalandia;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/*aqui hacemos lo mismo que hicimos en la clase "contraseñas", pero esta vez, 
+para reunir todos los emails*/
 public class correo {
 	public static String[] correoelectronico() throws SQLException {
 	ResultSet correo;

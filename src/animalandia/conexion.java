@@ -4,11 +4,11 @@ package animalandia;
 import java.sql.*;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Jose
- */
+// con esta clase nos conectamos a la base de datos
+
 public class conexion {
+	
+	//aqui le indicamos el nombre, el usuario, la contraseña, el localhost,etc
 	
 	static String timeZone = "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 	static String dbName = "Animalandia";

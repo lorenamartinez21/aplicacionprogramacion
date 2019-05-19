@@ -1,7 +1,10 @@
 package animalandia;
 
 import java.sql.ResultSet;
+
 import java.sql.SQLException;
+
+//seleccionamos todos los usuarios de la tabla usuarios, igual que con las contraseñas
 
 public class usuarios {
 	public static String[] usuario() throws SQLException {
@@ -20,5 +23,6 @@ public class usuarios {
 		}
 		return usuario;
 	}
+	//el string usuario, mas tarde sera llamado en la clase "usuarioaceptado"
 	
 }
